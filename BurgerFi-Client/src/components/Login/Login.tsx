@@ -2,29 +2,34 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css'
-import mascot from '../../assets/burgerFiQueen.png'
 
 function Login() {
 
-    const secretUser: string = 'Lomito'
-    const secretPassword: string = '7456'
-    
     const navigate = useNavigate();
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
-    const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (username === secretUser) {
-            if (password === secretPassword) {
-                navigate('/menu');
+        try {
+            const response = await fetch('https://burger-queen-api-mock-production-1724.up.railway.app/login',{
+                method :'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({email,password})
+            })
+            console.log(response);
+            
+            if (response.ok) {
+                const data = await response.json()
+                console.log(data);
+                localStorage.setItem('accessToken',data.accessToken)
+                navigate('/menu')
             } else {
-                setError('Wrong password')
+                setError("Wrong email or Password")
             }
-        }
-        else {
-            setError('The user doesnt exist')
+        } catch (error) {
+            setError("An error ocurred while login in")
         }
     }
 
@@ -34,16 +39,13 @@ function Login() {
                 <h1>Burger <span>Queen</span></h1>
             </header>
             <section className='login-container'>
-                <figure>
-                    <img src={mascot} alt="" />
-                </figure>
                 <form className='login-Form' onSubmit={handleLogin}>
                     <h2>Login to BurgerFi</h2>
                     <input
-                        type='text'
+                        type='email'
                         placeholder='Write your user'
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     >  </input>
                     <input
                         type='password'
