@@ -4,7 +4,7 @@
 - Se instalo y utilizo react-router para manjejar el ruteod e la pagina
 - se hizo el despliegue continuo en Netlify
 - Se realizaron prototipos de baja y alta fidelidad.
-## 0.1.0 07-Nov-2023
+## 0.2.0 07-Nov-2023
 <Historia de Usuario no 1 Terminada>
  -Acceder a una pantalla de login.
  -Ingresar email y contraseña.
@@ -47,7 +47,7 @@ En esta sección describe los bugs solucionados.
 -Se resolvieron DUDAS SOOBRE MOCK API
 Removed
 En esta sección incluye las funcionalidades eliminadas. 
-## 0.1.0 07-Nov-2023
+## 0.2.0 07-Nov-2023
 <Historia de Usuario no 1 Terminada>
  -Acceder a una pantalla de login.
  -Ingresar email y contraseña.
